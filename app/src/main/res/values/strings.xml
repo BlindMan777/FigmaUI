@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Figma_UI</string>
+    <string name="refresh_icon">Refresh icon</string>
+    <string name="close_icon">Close icon</string>
+</resources>
