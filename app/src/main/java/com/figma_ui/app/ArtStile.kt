@@ -4,14 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,77 +23,55 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ArtStile() {
+fun ArtStile(
+    modifier: Modifier = Modifier
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Column(
+        ArtStileItem(
+            label = "Colorful",
+            imgID = R.drawable.image1
+        )
+        ArtStileItem(
+            label = "Cyberpunk",
+            imgID = R.drawable.image1
+        )
+        ArtStileItem(
+            label = "Real",
+            imgID = R.drawable.image1
+        )
+    }
+}
+
+@Composable
+fun RowScope.ArtStileItem(
+    modifier: Modifier = Modifier,
+    imgID: Int,
+    label: String
+) {
+    Column(
+        modifier = modifier
+            .weight(1f),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Image(
             modifier = Modifier
-                .fillMaxWidth(0.3f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                painter = painterResource(R.drawable.image1),
-                contentDescription = "",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f/1f)
-                    .clip(RoundedCornerShape(8.dp)),
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Colourful",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif
-            )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth(0.43f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f/1f)
-                    .clip(RoundedCornerShape(8.dp)),
-                painter = painterResource(R.drawable.image1),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Cyberpunk",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif
-            )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth(0.75f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f/1f)
-                    .clip(RoundedCornerShape(8.dp)),
-                painter = painterResource(R.drawable.image1),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Real",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                fontFamily = FontFamily.SansSerif
-            )
-        }
+                .fillMaxWidth()
+                .aspectRatio(1f/1f)
+                .clip(RoundedCornerShape(8.dp)),
+            painter = painterResource(imgID),
+            contentDescription = label,
+            contentScale = ContentScale.Crop
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = label,
+            fontSize = 15.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.SansSerif
+        )
     }
 }

@@ -21,8 +21,7 @@ import androidx.compose.ui.unit.dp
 fun Header() {
     Row(
         modifier = Modifier
-            .fillMaxWidth(0.9f)
-            .background(Color.Transparent),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -33,8 +32,6 @@ fun Header() {
             contentDescription = ""
         )
         Row(
-            modifier = Modifier
-                .fillMaxWidth(0.5f),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(

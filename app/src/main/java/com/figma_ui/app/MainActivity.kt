@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.figma_ui.app.ui.components.BottomNavigationBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,33 +27,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-/*@Composable
-fun FigmaUI() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.LightGray)
-            .padding(0.dp, 40.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Header()
-        Container(name = "Enter Prompt") {
-            FirstBox()
-        }
-        Spacer(modifier = Modifier.height(15.dp))
-        SecondBox()
-        Spacer(modifier = Modifier.height(3.dp))
-        Container(name = "Aspect Ratio") {
-            AspectRatio()
-        }
-        Container(name = "Art Stile") {
-            ArtStile()
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-        GenerateButton()
-    }
-}*/
 
 @Composable
 fun FigmaUI() {
@@ -65,15 +39,16 @@ fun FigmaUI() {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.LightGray)
-                .padding(innerPadding),
+                .padding(innerPadding)
+                .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Header()
             Container(name = "Enter Prompt") {
-                FirstBox()
+                Prompt()
             }
             Spacer(modifier = Modifier.height(15.dp))
-            SecondBox()
+            Actions()
             Spacer(modifier = Modifier.height(3.dp))
             Container(name = "Aspect Ratio") {
                 AspectRatio()

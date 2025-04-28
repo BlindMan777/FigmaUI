@@ -28,7 +28,7 @@ fun Container(
         colors = CardDefaults.cardColors(containerColor = Color.White),
         shape = RoundedCornerShape(size = 16.dp),
         modifier = Modifier
-            .fillMaxWidth(0.9f)
+            .fillMaxWidth()
             .padding(top = 12.dp)
     ) {
         Column(

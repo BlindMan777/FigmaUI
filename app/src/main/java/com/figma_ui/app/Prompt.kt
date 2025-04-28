@@ -2,9 +2,11 @@ package com.figma_ui.app
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.Close
@@ -24,12 +26,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun FirstBox() {
+fun Prompt() {
     TextField(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp),
-        minLines = 5,
+            .fillMaxWidth(),
+        minLines = 3,
         value = "",
         placeholder = {
             Text(
@@ -71,14 +72,14 @@ fun FirstBox() {
             tint = Color.Blue
         )
         Row(
-            modifier = Modifier.fillMaxWidth(0.3f),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "0/100",
                 color = Color.DarkGray,
                 fontSize = 18.sp
             )
+            Spacer(modifier = Modifier.width(4.dp))
             Icon(
                 imageVector = Icons.Outlined.Close,
                 contentDescription = stringResource(R.string.close_icon),
