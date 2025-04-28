@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,76 +21,79 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+sealed class AspectRatioItemsList(val label: String, val selected: Boolean) {
+    data object OneToOne: AspectRatioItemsList("1 : 1", true)
+    data object ThreeToTwo: AspectRatioItemsList("3 : 2", false)
+    data object NineToSixteen: AspectRatioItemsList("9 : 16", false)
+    data object FourToThree: AspectRatioItemsList("4 : 3", false)
+    data object SixteenToNine: AspectRatioItemsList("16 : 9", false)
+    data object FiveToFour: AspectRatioItemsList("5 : 4", false)
+}
+
 @Composable
 fun AspectRatio(
     modifier: Modifier = Modifier
 ) {
-    Row(
+    val items = listOf(
+        AspectRatioItemsList.OneToOne,
+        AspectRatioItemsList.ThreeToTwo,
+        AspectRatioItemsList.NineToSixteen,
+        AspectRatioItemsList.FourToThree,
+        AspectRatioItemsList.SixteenToNine,
+        AspectRatioItemsList.FiveToFour,
+        AspectRatioItemsList.FiveToFour,
+        AspectRatioItemsList.FiveToFour
+    )
+    Column(
         modifier = modifier
             .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(5.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            AspectRatioItem(
-                label = "1 : 1",
-                selected = true
-            )
-            AspectRatioItem(
-                label = "3 : 2",
-                selected = false
-            )
+        items.chunked(3).forEach{ rowItems ->
+            Row(
+                modifier = Modifier
+                    .padding(5.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                if(rowItems.size == 3) {
+                    rowItems.forEach { item ->
+                        AspectRatioItem(
+                            label = item.label,
+                            selected = item.selected
+                        )
+                    }
+                } else if(rowItems.size == 2) {
+                    rowItems.forEach { item ->
+                        AspectRatioItem(
+                            label = item.label,
+                            selected = item.selected
+                        )
+                    }
+                    Spacer(modifier = Modifier.weight(1f))
+                } else if(rowItems.size == 1) {
+                    rowItems.forEach { item ->
+                        AspectRatioItem(
+                            label = item.label,
+                            selected = item.selected
+                        )
+                    }
+                    Spacer(modifier = Modifier.weight(2f))
+                }
+            }
         }
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(5.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            AspectRatioItem(
-                label = "9 : 16",
-                selected = false
-            )
-            AspectRatioItem(
-                label = "4 : 3",
-                selected = false
-            )
-        }
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(5.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            AspectRatioItem(
-                label = "16 : 9",
-                selected = false
-            )
-            AspectRatioItem(
-                label = "5 : 4",
-                selected = false
-            )
-        }
+
     }
 }
 
 @Composable
-fun AspectRatioItem(
+fun RowScope.AspectRatioItem(
     modifier: Modifier = Modifier,
     label: String,
     selected: Boolean = false
 ) {
     Row(
         modifier = modifier
-            .fillMaxWidth()
+            .weight(1f)
             .background(
                 color = if(selected) Color.Blue else Color.Transparent,
                 shape = RoundedCornerShape(size = 8.dp)
