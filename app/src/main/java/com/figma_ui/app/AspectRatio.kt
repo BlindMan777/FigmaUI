@@ -40,8 +40,6 @@ fun AspectRatio(
         AspectRatioItemsList.NineToSixteen,
         AspectRatioItemsList.FourToThree,
         AspectRatioItemsList.SixteenToNine,
-        AspectRatioItemsList.FiveToFour,
-        AspectRatioItemsList.FiveToFour,
         AspectRatioItemsList.FiveToFour
     )
     Column(
